@@ -30,7 +30,7 @@ export default function FeaturedBanner({ content }: FeaturedBannerProps) {
         <div className="max-w-3xl hero-content">
           <div className="mb-6 flex items-center space-x-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-r from-[#00A8E1] to-[#1FB6FF] rounded-lg flex items-center justify-center shadow-lg">
+              <div className="w-10 h-10 bg-gradient-to-r from-[#00A8E1] to-[#1FB6FF] rounded-xl flex items-center justify-center shadow-lg">
                 <span className="text-white text-sm font-bold">prime</span>
               </div>
               <span className="text-[#00A8E1] font-semibold uppercase tracking-wider text-sm">Original Series</span>

@@ -10,7 +10,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['placeholder.svg'],
+    domains: ['placeholder.svg',"firestories.s3.ap-south-1.amazonaws.com", "images.unsplash.com"],
     unoptimized: true,
     formats: ['image/webp', 'image/avif'],
   },

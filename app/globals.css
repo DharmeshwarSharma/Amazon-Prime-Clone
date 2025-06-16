@@ -1,0 +1,473 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --prime-dark: #0f171e;
+  --prime-darker: #0a0e13;
+  --prime-blue: #00a8e1;
+  --prime-blue-light: #1fb6ff;
+  --prime-gold: #ffd700;
+  --prime-light-gray: #aeb3b7;
+  --prime-white: #ffffff;
+  --prime-card-bg: rgba(255, 255, 255, 0.05);
+  --prime-card-hover: rgba(255, 255, 255, 0.08);
+  --bright-orange: #ff6b35;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, var(--prime-dark) 0%, var(--prime-darker) 100%);
+  color: var(--prime-white);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+.horizontal-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Custom scrollbar for clip menu */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 53, 0.5);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 53, 0.7);
+}
+
+/* Modern card hover effects */
+.content-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--prime-card-bg);
+  backdrop-filter: blur(10px);
+}
+
+.content-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 168, 225, 0.1) 0%, rgba(255, 215, 0, 0.1) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.content-card:hover::before {
+  opacity: 1;
+}
+
+.content-card:hover {
+  transform: scale(1.08) translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 20px rgba(0, 168, 225, 0.2);
+  background: var(--prime-card-hover);
+  z-index: 10;
+}
+
+.content-card:hover .card-content {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 2;
+}
+
+/* Enhanced badge styling with hover hide/show functionality */
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 4;
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transform: scale(1);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 20px);
+  min-width: fit-content;
+  width: auto;
+  display: inline-block;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+}
+
+/* Hide badges on card hover with smooth fade out */
+.content-card:hover .badge {
+  opacity: 0;
+  transform: scale(0.8) translateY(-10px);
+  pointer-events: none;
+}
+
+.badge-top-10 {
+  background: linear-gradient(135deg, #ff4757 0%, #ff3838 100%);
+  color: white;
+  box-shadow: 0 3px 12px rgba(255, 71, 87, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+  font-size: 10px;
+  font-weight: 900;
+  padding: 6px 12px;
+}
+
+.badge-new-series {
+  background: linear-gradient(135deg, #00d2d3 0%, #54a0ff 100%);
+  color: white;
+  box-shadow: 0 3px 12px rgba(0, 210, 211, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 6px 10px;
+  letter-spacing: 0.3px;
+}
+
+.badge-new-season {
+  background: linear-gradient(135deg, #ffa502 0%, #ff6348 100%);
+  color: white;
+  box-shadow: 0 3px 12px rgba(255, 165, 2, 0.5);
+  border-color: rgba(255, 255, 255, 0.25);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 6px 10px;
+  letter-spacing: 0.3px;
+}
+
+.badge-award-winner {
+  background: linear-gradient(135deg, #a55eea 0%, #8c7ae6 50%, #6c5ce7 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(165, 94, 234, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 6px 10px;
+}
+
+.badge-live {
+  background: linear-gradient(135deg, #ff3838 0%, #ff4757 50%, #ff6b6b 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 56, 56, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  animation: livePulse 2s infinite;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 7px 12px;
+}
+
+/* Stop live badge animation when card is hovered */
+.content-card:hover .badge-live {
+  animation: none;
+}
+
+.badge-upcoming {
+  background: linear-gradient(135deg, #ffa502 0%, #ff9ff3 50%, #54a0ff 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 165, 2, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 6px 8px;
+}
+
+.badge-new {
+  background: linear-gradient(135deg, #2ed573 0%, #7bed9f 50%, #70a1ff 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(46, 213, 115, 0.4);
+  border-color: rgba(255, 255, 255, 0.2);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 7px 12px;
+}
+
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 2px 8px rgba(255, 56, 56, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4px 16px rgba(255, 56, 56, 0.6), 0 0 0 3px rgba(255, 56, 56, 0.1);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 2px 8px rgba(255, 56, 56, 0.4);
+    transform: scale(1);
+  }
+}
+
+/* Prime logo animation */
+.prime-logo {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 4;
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.content-card:hover .prime-logo {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Play button hover effect */
+.play-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.play-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.play-button:hover::before {
+  left: 100%;
+}
+
+.play-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Navigation active state */
+.nav-active {
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  backdrop-filter: blur(10px);
+}
+
+.nav-active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--prime-blue), transparent);
+  border-radius: 1px;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  animation: fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero banner enhanced animations */
+.hero-content {
+  animation: heroSlideIn 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes heroSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Video player enhancements */
+.video-controls {
+  backdrop-filter: blur(10px);
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Enhanced clip button styling with bright orange */
+.clip-button {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 107, 53, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.clip-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 107, 53, 0.5), 0 0 20px rgba(255, 107, 53, 0.3);
+  border-color: rgba(255, 107, 53, 0.6);
+}
+
+/* Row scroll animations */
+.content-row {
+  opacity: 0;
+  animation: slideInFromBottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.content-row:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.content-row:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.content-row:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.content-row:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Full screen video styles */
+.fullscreen-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: #000;
+}
+
+/* Responsive badge adjustments with better text handling */
+@media (max-width: 768px) {
+  .badge {
+    font-size: 8px;
+    padding: 4px 6px;
+    top: 10px;
+    left: 10px;
+    max-width: calc(100% - 20px);
+    letter-spacing: 0.1px;
+  }
+
+  .badge-top-10,
+  .badge-live,
+  .badge-new {
+    font-size: 9px;
+    padding: 5px 7px;
+  }
+
+  .badge-new-series,
+  .badge-new-season {
+    font-size: 7px;
+    padding: 4px 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .badge {
+    font-size: 7px;
+    padding: 3px 5px;
+    top: 8px;
+    left: 8px;
+    max-width: calc(100% - 16px);
+    letter-spacing: 0px;
+  }
+
+  .badge-top-10,
+  .badge-live,
+  .badge-new {
+    font-size: 8px;
+    padding: 4px 6px;
+  }
+
+  .badge-new-series,
+  .badge-new-season {
+    font-size: 6px;
+    padding: 3px 4px;
+  }
+}
+
+/* Enhanced card title truncation */
+.card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: calc(100% - 60px); /* Account for rating section */
+}
+
+/* Enhanced metadata truncation */
+.card-metadata {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
